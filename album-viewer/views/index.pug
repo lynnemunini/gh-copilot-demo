@@ -3,17 +3,25 @@ extends layout
 block content 
     div(class="ui message attached " + background_color  style="height:50px") Greatest Hits
     div(class="ui attached segment")
-      div(class="ui divided items")
+      div(class="ui three column stackable grid")
         each album in albums
-          div(class="item")
-            div(class="ui image small")
-              img(src=album.image_url)
-            div(class="content")
-              div(class="header")
-                span(class="album-title")=album.title
-              div(class="meta")
-                span(class="meta-info")=album.artist
-                span(class="meta-info")=album.price
+          div(class="column")
+            div(class="ui card")
+              div(class="image")
+                if album.image_url
+                  img(src=album.image_url)
+                else
+                  div(class="ui placeholder" style="height: 200px; background: #f8f8f8; display: flex; align-items: center; justify-content: center; color: #999;")
+                    i(class="music icon massive")
+              div(class="content")
+                div(class="header")
+                  span(class="album-title")=album.title
+                div(class="meta")
+                  div(class="meta-info")=album.artist
+                  if album.year
+                    div(class="meta-info")=album.year
+                  if album.price
+                    div(class="meta-info")=album.price
       
 
   
